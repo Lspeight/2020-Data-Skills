@@ -29,3 +29,20 @@ BiocManager::install('qrqc')
 # Now you can minimize the RStudio window and get back to the terminal
 
 ```
+## Trimming low-quality bases with sickle and seqtk
+now, go back to your terminal and check to makre sure that you are in the 'sequence-data'folder. Use 'ls; to see is the untreated1_chr4.fq is in the folder
+```bash 
+# TAB, DONT TYPE
+$ ./sickle se -f untreated1_chr4.fq -t sanger -o untreated1_chr4_sickle.fq
+# Note you must have the “./” before “sickle” to make this work
+# you should see the following output
+Total FastQ records: 204355
+FastQ records kept: 203121
+FastQ records discarded: 1234
+# sickle takes an input file through -f, a quality type through -t, and trimmed output with -o
+
+# trimming low quality bases with seqtk
+$ ./seqtk trimfq untreated1_chr4.fq > untreated1_chr4.trimfq.fq
+# this takes a single argument and outputs trimmed sequence through standard out
+
+```
